@@ -61,3 +61,14 @@ export type AnnouncementRow = {
   created_ts: Date;
   updated_ts: Date;
 }
+
+export type FeedRow = {
+  id: number;
+  tableId: number;
+  type: "user" | "project" | "announcement";
+  fellowship: "founders" | "angels" | "writers" | "all";
+  name: string;
+  description: string;
+  image_url: string;
+  created_ts: Date;
+}
