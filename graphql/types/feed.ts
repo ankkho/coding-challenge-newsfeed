@@ -26,3 +26,7 @@ export type Props = {
 export  type fellowshipMapType = {
     [name: string]: String
   }
+
+export type QueryData = {
+    [feedName: string]: Feed[]
+  }

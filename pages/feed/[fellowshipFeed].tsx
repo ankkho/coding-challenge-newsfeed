@@ -5,7 +5,7 @@ import Layout from 'components/Layout'
 import FeedCard from 'components/FeedCard'
 import FeedLayout from 'components/FeedLayout'
 import HomeLink from 'components/HomeLink'
-import { Feed, QueryVarsPagination } from 'graphql/types/feed'
+import { QueryVarsPagination, QueryData } from 'graphql/types/feed'
 
 export default function FeedPage() {
   const [offset, setOffset] = useState(0);
@@ -28,16 +28,17 @@ export default function FeedPage() {
       }
     }
   `
-  
-  type QueryData = {
-    [feedName: string]: Feed[]
-  }
 
   const { data, error, loading, fetchMore } = useQuery<QueryData, QueryVarsPagination>(
     FEED_QUERY, { variables: { limit, offset }}
   )
 
   if (!data?.[`${feedName}`] || loading || error) {
+
+    if (loading) {
+      return <p>loading...</p>
+    }
+
     if (error) {
       console.error(error);
     }
@@ -51,7 +52,7 @@ export default function FeedPage() {
       const isBottom = window.innerHeight + document.documentElement.scrollTop === document.documentElement.offsetHeight;
       if(isBottom) {
         const updatedOffset = offset + 1;
-        fetchMore({variables: { limit, offset: updatedOffset }});
+        fetchMore({variables: { limit, offset: updatedOffset }});        
         setOffset(updatedOffset);
       }
     }

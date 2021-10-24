@@ -21,10 +21,10 @@ export default async function foundersFeed(parent: unknown, {limit, offset}: Arg
     )
     
   let id = begin;
-  const uniqueIdFeed = feed.map(item => {
+  const feedWithUniqueId = feed.map(item => {
     item.id = id++;
     return item;
   });
 
-  return uniqueIdFeed;
+  return feedWithUniqueId;
 }
