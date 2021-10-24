@@ -13,3 +13,16 @@ export type QueryVarsPagination = {
     limit: number;
     offset: number;
   }
+
+export type Args = {
+    limit: number;
+    offset: number;
+  }
+
+export type Props = {
+    feed: Feed;
+  }
+
+export  type fellowshipMapType = {
+    [name: string]: String
+  }
